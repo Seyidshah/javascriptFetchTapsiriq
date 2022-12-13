@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      fetch("https://northwind.vercel.app/api/suppliers", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/JSON",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+
+      fetch("https://northwind.vercel.app/api/suppliers/4", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/JSON",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+
+      let body = {
+        companyName: "Chocolatier",
+        contactName: "SEYIDSHAH JALILOV",
+        contactTitle: "OWNER",
+        address: {
+          street: "Nigar Rafibeyli",
+          city: "Baku",
+          region: "Baku",
+          postalCode: "AZ1000",
+          country: "Azerbaijan",
+          phone: "+994504806699",
+        },
+      };
+
+      let bodyJson = JSON.stringify(body);
+
+      fetch("https://northwind.vercel.app/api/suppliers", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: bodyJson,
+      })
+        .then((res) => res.json())
+        .then((d) => console.log("POST '/api/suppliers' response data: ", d));
+    </script>
+  </body>
+</html>
